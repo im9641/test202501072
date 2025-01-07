@@ -29,49 +29,90 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* ---------------------------
-           상점정보 섹션 스타일
-           - 테두리 추가 및 배경색 변경
-        ---------------------------- */
-        .highlight-section {
+        /* 헤더 스타일 */
+        .receipt-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #0078d7;
+            color: white;
+            padding: 10px;
+            border-radius: 6px 6px 0 0;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .receipt-header .logo {
+            flex: 1;
+        }
+
+        .receipt-header .title {
+            text-align: center;
+        }
+
+        .close-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* 각 섹션 공통 스타일 */
+        .receipt-section {
             margin-top: 10px;
             padding: 10px;
-            border: 1px solid #0078d7; /* 상점정보 섹션의 테두리 추가 */
+            border: 1px solid #ccc;
             border-radius: 4px;
-
-            /* 상점정보 섹션 배경색 설정 */
-            background: #eaf4ff; /* 여기에서 배경색을 수정하세요 (옅은 파란색 적용) */
+            font-size: 12px;
         }
 
-        .highlight-section .info-table th,
-        .highlight-section .info-table td {
-            background: #ffffff; /* 내부 테이블 배경은 흰색으로 유지 */
+        .section-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
             color: #333;
-            font-weight: normal;
         }
 
-        .highlight-section .info-table {
-            border-collapse: collapse;
+        .info-table {
             width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
         }
 
-        .highlight-section .info-table th,
-        .highlight-section .info-table td {
-            border: 1px solid #ddd; /* 테이블 셀의 테두리 추가 */
+        .info-table th, .info-table td {
             padding: 6px;
             text-align: left;
         }
 
-        .highlight-section .section-title {
-            color: #0078d7; /* 제목 색상 변경 */
+        .info-table th {
+            background: #f9f9f9;
             font-weight: bold;
         }
 
-        /* ---------------------------
-           하단 푸터 섹션
-        ---------------------------- */
+        /* 상점정보 섹션 */
+        .highlight-section {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #0078d7;
+            border-radius: 4px;
+
+            /* 상점정보 테두리 내부 배경색 */
+            background: #eaf4ff; /* 수정 가능한 배경색 */
+        }
+
+        .highlight-section .info-table th,
+        .highlight-section .info-table td {
+            background: #ffffff; /* 개별 셀 배경은 흰색 유지 */
+            border: 1px solid #ddd;
+        }
+
+        /* 하단 푸터 */
         .footer {
-            background: #0078d7; /* 이지플랫 문구가 들어간 영역의 배경색 */
+            background: #0078d7; /* 신용카드 청구서 문구 배경색 */
             color: white;
             text-align: center;
             margin-top: 10px;
@@ -104,18 +145,14 @@
 </head>
 <body>
     <div class="receipt-container">
-        <!-- ---------------------------
-             헤더(상단 영역)
-        ---------------------------- -->
+        <!-- 헤더 -->
         <div class="receipt-header">
             <div class="logo">로고</div>
             <div class="title">온라인 매출전표</div>
             <button class="close-btn" onclick="closeReceipt()">×</button>
         </div>
 
-        <!-- ---------------------------
-             구매정보 섹션
-        ---------------------------- -->
+        <!-- 구매정보 -->
         <div class="receipt-section">
             <div class="section-title">구매정보</div>
             <table class="info-table">
@@ -138,9 +175,7 @@
             </table>
         </div>
 
-        <!-- ---------------------------
-             결제정보 섹션
-        ---------------------------- -->
+        <!-- 결제정보 -->
         <div class="receipt-section">
             <div class="section-title">결제정보</div>
             <table class="info-table">
@@ -183,9 +218,7 @@
             </table>
         </div>
 
-        <!-- ---------------------------
-             상점정보 섹션
-        ---------------------------- -->
+        <!-- 상점정보 -->
         <div class="highlight-section">
             <div class="section-title">상점정보</div>
             <table class="info-table">
@@ -212,18 +245,12 @@
             </table>
         </div>
 
-        <!-- ---------------------------
-             푸터(하단) 1
-        ---------------------------- -->
+        <!-- 푸터 -->
         <div class="footer">
             신용카드 청구서에는 <a href="https://inicis.com" target="_blank">이지플랫전자결제(주)</a>로 표시됩니다.<br>
             This Transaction will be billed by EGFP Inc.
         </div>
 
-        <!-- ---------------------------
-             푸터(하단) 2
-             매출전표 관련 안내
-        ---------------------------- -->
         <div class="footer-small">
             * 신용카드 매출전표는 부가가치세법 제32조 2 제3항에 의하여 발행되었으며, 
               부가가치세법 제46조에 따라 신용카드매출전표 등을 발급받은 경우에는 
