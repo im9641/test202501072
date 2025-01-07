@@ -5,16 +5,65 @@
     <style>
         .receipt-container {
             width: 350px;
-            background-color: #e6f3f7;
+            background-color: #fff;
             border: 2px solid #ccc;
             padding: 15px;
             font-family: Arial, sans-serif;
             border-radius: 8px;
+            position: relative;
+            background-image: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.03) 0px,
+                rgba(0, 0, 0, 0.03) 1px,
+                transparent 1px,
+                transparent 21px
+            );
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            background: #ff4444;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .close-button:hover {
+            background: #ff0000;
+        }
+
+        .close-button::before,
+        .close-button::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 2px;
+            background-color: white;
+        }
+
+        .close-button::before {
+            transform: rotate(45deg);
+        }
+
+        .close-button::after {
+            transform: rotate(-45deg);
         }
 
         .header {
             text-align: center;
             margin-bottom: 15px;
+            padding-top: 15px;
         }
 
         .logo {
@@ -26,10 +75,11 @@
         }
 
         .section {
-            background-color: white;
-            border: 1px solid #999;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ddd;
             margin-bottom: 10px;
             padding: 8px;
+            border-radius: 4px;
         }
 
         .row {
@@ -51,6 +101,7 @@
 
         .amount {
             font-weight: bold;
+            color: #2c3e50;
         }
 
         .footer {
@@ -58,16 +109,25 @@
             color: #666;
             text-align: center;
             margin-top: 10px;
+            padding: 10px;
+            border-top: 1px dashed #ccc;
         }
 
         .highlight {
             background-color: #fff3cd;
             padding: 5px;
         }
+
+        @media print {
+            .close-button {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="receipt-container">
+        <button class="close-button" onclick="window.close()"></button>
         <div class="header">
             <div class="logo">
                 <div>온라인 신용카드매출전표</div>
