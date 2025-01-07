@@ -32,7 +32,6 @@
         /* 헤더 스타일 */
         .receipt-header {
             display: flex;
-            justify-content: space-between;
             align-items: center;
             background: #0078d7;
             color: white;
@@ -40,27 +39,31 @@
             border-radius: 6px 6px 0 0;
             font-size: 14px;
             font-weight: bold;
-        }
+            position: relative; /* 상대 위치를 사용 */
+        }    
 
         .receipt-header .logo {
-            flex: 1;
+            flex: 1; /* 로고는 왼쪽에 정렬 */
         }
-
+        
         .receipt-header .title {
+            position: absolute; /* 제목을 가운데로 고정 */
+            left: 50%; /* 왼쪽 기준으로 50% 이동 */
+            transform: translateX(-50%); /* 중앙으로 정렬 */
+            font-size: 14px;
             text-align: center;
-            margin: 0 auto; /* 타이틀을 가운데 정렬 */
-            font-size: 14px; /* 타이틀 크기 */
         }
-
+        
         .close-btn {
             background: #f44336;
             color: white;
             border: none;
             border-radius: 4px;
-            padding: 4px 8px; /* 버튼 크기 조정 */
+            padding: 4px 8px;
             font-size: 12px;
             cursor: pointer;
         }
+
 
         /* 각 섹션 공통 스타일 */
         .receipt-section {
