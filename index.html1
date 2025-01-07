@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>온라인 매출전표</title>
+    <!-- 기존 Noto Sans 폰트 (주석 처리됨) -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet"> -->
+
+    <!-- Pretendard 폰트 적용 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
+
+    <style>
+        body {
+            /* Pretendard 폰트 적용 */
+            font-family: 'Pretendard Variable', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .receipt-container {
+            background: white;
+            width: 100%;
+            max-width: 320px; /* 아이폰 SE 기준 폭 */
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .receipt-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #0078d7;
+            color: white;
+            padding: 10px;
+            border-radius: 6px 6px 0 0;
+            position: relative;
+        }
+
+        .receipt-header .logo {
+            font-weight: bold;
+        }
+
+        .receipt-header .title {
+            font-size: 16px;
+            font-weight: bold;
+            flex: 1;
+            text-align: center;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            background: #f44336;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 16px;
+            cursor: pointer;
+            line-height: 24px;
+            text-align: center;
+        }
+
+        .receipt-section {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        .info-table th, .info-table td {
+            padding: 6px;
+            text-align: left;
+        }
+
+        .info-table th {
+            background: #f9f9f9;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* 강조된 섹션 스타일 */
+        .highlight-row {
+            background: #e8f4fc;
+            border-radius: 4px;
+            padding: 10px;
+        }
+
+        .highlight-row th, .highlight-row td {
+            font-weight: bold;
+            color: #0078d7;
+        }
+
+        .footer {
+            background: #0078d7;
+            color: white;
+            text-align: center;
+            margin-top: 10px;
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 12px;
+        }
+
+        .footer a {
+            color: #ffeb3b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-small {
+            background: #f9f9f9;
+            color: #555;
+            text-align: center;
+            margin-top: 5px;
+            padding: 10px;
+            font-size: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 320px) {
+            .receipt-container {
+                max-width: 100%;
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .receipt-header .title {
+                font-size: 14px;
+            }
+
+            .info-table th, .info-table td {
+                font-size: 10px;
+                padding: 5px;
+            }
+
+            .footer {
+                font-size: 10px;
+                padding: 8px;
+            }
+
+            .footer-small {
+                font-size: 9px;
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="receipt-container">
+        <!-- Header -->
+        <div class="receipt-header">
+            <div class="logo">로고</div>
+            <div class="title">온라인 매출전표</div>
+            <button class="close-btn" onclick="closeReceipt()">×</button>
+        </div>
+
+        <!-- Section 1: 결제정보 -->
+        <div class="receipt-section">
+            <div class="section-title">결제정보</div>
+            <table class="info-table">
+                <tr>
+                    <th>결제방법 (방식)</th>
+                    <td>신용카드 / 체크카드</td>
+                </tr>
+                <tr>
+                    <th>카드종류</th>
+                    <td>비씨카드</td>
+                </tr>
+                <tr>
+                    <th>카드번호</th>
+                    <td>1321-1213-10312</td>
+                </tr>
+                <tr>
+                    <th>할부개월</th>
+                    <td>일시불 / 12개월</td>
+                </tr>
+                <tr>
+                    <th>거래유형</th>
+                    <td>승인 / 취소</td>
+                </tr>
+                <tr>
+                    <th>승인번호</th>
+                    <td>132131231</td>
+                </tr>
+                <tr>
+                    <th>결제금액</th>
+                    <td>44,000</td>
+                </tr>
+                <tr>
+                    <th>공급가</th>
+                    <td>40,000</td>
+                </tr>
+                <tr>
+                    <th>부가세</th>
+                    <td>4,000</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Section 2: 구매정보 -->
+        <div class="receipt-section">
+            <div class="section-title">구매정보</div>
+            <table class="info-table">
+                <tr>
+                    <th>거래일시</th>
+                    <td>2024-12-12 17:10</td>
+                </tr>
+                <tr>
+                    <th>상품명</th>
+                    <td>신속개발강의</td>
+                </tr>
+                <tr>
+                    <th>구매자명</th>
+                    <td>이민자</td>
+                </tr>
+                <tr>
+                    <th>주문번호</th>
+                    <td>1232321</td>
+                </tr>
+            </table>
+
+            <!-- 강조된 섹션 -->
+            <div class="highlight-row">
+                <table class="info-table">
+                    <tr>
+                        <th>사업장명</th>
+                        <td>초특급개발센터</td>
+                    </tr>
+                    <tr>
+                        <th>대표자명</th>
+                        <td>일론머스크</td>
+                    </tr>
+                    <tr>
+                        <th>사업자등록번호</th>
+                        <td>124-00-12345</td>
+                    </tr>
+                    <tr>
+                        <th>사업장주소</th>
+                        <td>경기도 가평군 복길 직로 999</td>
+                    </tr>
+                    <tr>
+                        <th>상점문의</th>
+                        <td>1669-2255</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Footer 1 -->
+        <div class="footer">
+            신용카드 청구서에는 <a href="https://inicis.com" target="_blank">이지플랫전자결제(주)</a>로 표시됩니다.<br>
+            This Transaction will be billed by EGFP Inc.
+        </div>
+
+        <!-- Footer 2 -->
+        <div class="footer-small">
+            부가세법 시행령 제57조 2항에 따라 결제대행업체를 통한 신용카드 매출전표를 발행한 경우에는 사업자가 별도의 세금계산서를 교부할 수 없습니다.
+        </div>
+    </div>
+
+    <script>
+        function closeReceipt() {
+            document.querySelector('.receipt-container').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
