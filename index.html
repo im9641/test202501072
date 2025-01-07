@@ -22,7 +22,7 @@
         .receipt-container {
             background: white;
             width: 100%;
-            max-width: 280px; /* 더 좁은 가로 폭 */
+            max-width: 300px; /* 가로 크기를 조정하려면 이 값을 수정하세요 (기존: 280px -> 현재: 300px) */
             border: 1px solid #ccc;
             border-radius: 8px;
             padding: 10px;
@@ -146,7 +146,7 @@
         }
 
         /* 반응형 디자인 */
-        @media (max-width: 280px) {
+        @media (max-width: 300px) { /* 반응형 조건도 변경 필요 (기존: 280px -> 현재: 300px) */
             .receipt-container {
                 max-width: 100%;
                 border-radius: 0;
@@ -188,7 +188,7 @@
             <div class="section-title">결제정보</div>
             <table class="info-table">
                 <tr>
-                    <th>결제방법 (방식)</th>
+                    <th>결제방법</th>
                     <td>신용카드 / 체크카드</td>
                 </tr>
                 <tr>
