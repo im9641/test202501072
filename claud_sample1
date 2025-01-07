@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .receipt-container {
+            width: 350px;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            padding: 15px;
+            font-family: Arial, sans-serif;
+            border-radius: 8px;
+            position: relative;
+            background-image: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.03) 0px,
+                rgba(0, 0, 0, 0.03) 1px,
+                transparent 1px,
+                transparent 21px
+            );
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            background: #ff4444;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .close-button:hover {
+            background: #ff0000;
+        }
+
+        .close-button::before,
+        .close-button::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 2px;
+            background-color: white;
+        }
+
+        .close-button::before {
+            transform: rotate(45deg);
+        }
+
+        .close-button::after {
+            transform: rotate(-45deg);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            padding-top: 15px;
+        }
+
+        .logo {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .label {
+            color: #444;
+            flex: 1;
+        }
+
+        .value {
+            flex: 1;
+            text-align: right;
+        }
+
+        .amount {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .footer {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin-top: 10px;
+            padding: 10px;
+            border-top: 1px dashed #ccc;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 5px;
+        }
+
+        @media print {
+            .close-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="receipt-container">
+        <button class="close-button" onclick="window.close()"></button>
+        <div class="header">
+            <div class="logo">
+                <div>온라인 신용카드매출전표</div>
+                <div>INICIS</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="row">
+                <span class="label">카드종류/Card type</span>
+                <span class="value">국민</span>
+            </div>
+            <div class="row">
+                <span class="label">카드번호/Card number</span>
+                <span class="value">0001************</span>
+            </div>
+            <div class="row">
+                <span class="label">유효기간/Exp date</span>
+                <span class="value">**/**</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="row">
+                <span class="label">거래일시/Transaction date</span>
+                <span class="value">2000/01/15 10:39:14</span>
+            </div>
+            <div class="row">
+                <span class="label">승인번호/Approval</span>
+                <span class="value">10300376</span>
+            </div>
+            <div class="row">
+                <span class="label">거래금액/Amount</span>
+                <span class="value amount">2,273</span>
+            </div>
+            <div class="row">
+                <span class="label">부가세/Tax</span>
+                <span class="value">227</span>
+            </div>
+            <div class="row">
+                <span class="label">합계/Total</span>
+                <span class="value amount">2,500</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="row">
+                <span class="label">가맹점/Member store</span>
+                <span class="value">마이루리</span>
+            </div>
+            <div class="row">
+                <span class="label">사업자번호/Business no.</span>
+                <span class="value">229-81-03214</span>
+            </div>
+            <div class="row">
+                <span class="label">주소/Address</span>
+                <span class="value">서울 서초구 서초동 1626-3</span>
+            </div>
+            <div class="row">
+                <span class="label">전화번호/Tel.</span>
+                <span class="value">02-3485-4626</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            이 거래는 (주)이니시스에서 결제됩니다.<br>
+            This Transaction will be billed by INICIS Co.,Ltd.
+        </div>
+    </div>
+</body>
+</html>
