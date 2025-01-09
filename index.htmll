@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카드매출전표</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
+
+    <style>
+        body {
+            font-family: 'Pretendard Variable', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .receipt-container {
+            background: white;
+            width: 100%;
+            max-width: 260px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 6px; /* 패딩 최소화 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .receipt-header {
+            display: flex;
+            align-items: center;
+            background: #0078d7;
+            color: white;
+            padding: 6px; /* 헤더 패딩 최소화 */
+            border-radius: 6px 6px 0 0;
+            font-size: 11px; /* 폰트 크기 축소 */
+            font-weight: bold;
+            position: relative;
+        }
+
+        .receipt-header .logo {
+            flex: 1;
+        }
+        
+        .receipt-header .title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            
+        }
+
+        .close-btn {
+            background: #ffffff;  
+            color: black;
+            border: none;
+            border-radius: 4px;
+            padding: 2px 5px; /* 버튼 크기 축소 */
+            font-size: 10px;
+            cursor: pointer;
+        }
+
+        .receipt-section {
+            margin-top: 6px; /* 섹션 간격 최소화 */
+            padding: 6px; /* 섹션 패딩 최소화 */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 10px; /* 폰트 크기 축소 */
+        }
+
+        .section-title {
+            font-size: 11px; /* 제목 폰트 축소 */
+            font-weight: bold;
+            margin-bottom: 4px; /* 제목과 내용 간격 축소 */
+            color: #333;
+            text-align: center;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10px;
+        }
+
+        .info-table th{
+            padding: 3px; /* 셀 간격 최소화 */
+            text-align: left;
+        }
+          .info-table td {
+            padding: 3px; /* 셀 간격 최소화 */
+            text-align: right;
+        }
+
+        .info-table th {
+            background: #f9f9f9;
+            font-weight: bold;    
+            width: 55px;
+
+           
+            
+        }
+
+        .highlight-section {
+            margin-top: 6px;
+            padding: 6px;
+            border: 1px solid #0078d7;
+            border-radius: 4px;
+            background: #eaf4ff;
+            text-align: center;
+            
+        }
+
+        .highlight-section .info-table th {
+            background:#0078d7;
+            color:white;
+            border: 1px solid #ddd;
+        }
+        
+        .highlight-section .info-table td {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            text-align: right;
+        }
+
+        .footer {
+            background: #0078d7;
+            color: white;
+            text-align: center;
+            margin-top: 6px;
+            border-radius: 4px;
+            padding: 6px; /* 패딩 최소화 */
+            font-size: 8px; /* 폰트 크기 축소 */
+        }
+
+        .footer a {
+            color: #3eccff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-small {
+            background: #f9f9f9;
+            color: #555;
+            text-align: center;
+            margin-top: 4px; /* 간격 축소 */
+            padding: 4px; /* 패딩 최소화 */
+            font-size: 7px; /* 폰트 크기 축소 */
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        /* 반응형 설정 */
+        @media (max-width: 320px) {
+            .receipt-container {
+                max-width: 220px;
+            }
+
+            .receipt-header, .receipt-section, .highlight-section, .footer {
+                font-size: 9px;
+            }
+
+            .info-table th, .info-table td {
+                font-size: 8px;
+                padding: 2px; /* 셀 간격 축소 */
+            }
+
+            .close-btn {
+                font-size: 8px;
+                padding: 1px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="receipt-container">
+        <div class="receipt-header">
+            <!--- <div class="logo">로고</div> -->
+            <div class="title">카드매출전표</div>
+            <button class="close-btn" onclick="closeReceipt()">닫기</button>
+        </div>
+
+        <div class="receipt-section">
+            <div class="section-title">구매정보</div>
+            <table class="info-table">
+                <tr><th>거래일시</th><td>2024-12-12 17:10</td></tr>
+                <tr><th>상품명</th><td>신속개발강의</td></tr>
+                <tr><th>구매자명</th><td>이민자</td></tr>
+                <tr><th>주문번호</th><td>1232321</td></tr>
+            </table>
+        </div>
+
+        <div class="receipt-section">
+            <div class="section-title">결제정보</div>
+            <table class="info-table">
+                <tr><th>결제방법</th><td>신용카드 / 체크카드</td></tr>
+                <tr><th>카드종류</th><td>비씨카드</td></tr>
+                <tr><th>카드번호</th><td>1321-1213-****-****</td></tr>
+                <tr><th>할부개월</th><td>일시불 / 12개월</td></tr>
+                <tr><th>거래상태</th><td>승인</td></tr>
+                <tr><th>승인번호</th><td>132131231</td></tr>
+                <tr><th>결제금액</th><td>44,000원</td></tr>
+                <tr><th>공급가</th><td>40,000원</td></tr>
+                <tr><th>부가세</th><td>4,000원</td></tr>
+            </table>
+        </div>
+
+        <div class="highlight-section">
+            <div class="section-title">상점정보</div>
+            <table class="info-table" >
+                <tr><th >사업장명</th><td>초특급개발센터</td></tr>
+                <tr><th>대표자명</th><td>일론머스크</td></tr>
+                <tr><th>사업자번호</th><td>124-00-12345</td></tr>
+                <tr><th>사업장주소</th><td>경기도 가평군 복길 직로 999</td></tr>
+                <tr><th>상점문의</th><td>1669-2255</td></tr>
+            </table>
+        </div>
+
+        <div class="footer">
+            신용카드 청구서에는 <a href="https://egfp.kr/" target="_blank">이지플랫전자결제(주)</a>로 표시됩니다. <br>
+            This Transaction will be billed by EGFP Inc.
+            
+        </div>
+
+        <div class="footer-small">
+            신용카드 매출전표는 부가가치세법 제32조에 의하여 발행되었으며, 부가가치세법 제46조에 따라 신용카드매출전표 등을 발급받은 경우에는 매입세액 공제가 가능합니다.
+        </div>
+    </div>
+
+    <script>
+        function closeReceipt() {
+            document.querySelector('.receipt-container').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
